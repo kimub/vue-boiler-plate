@@ -1,5 +1,25 @@
-<template>Home</template>
+<template>
+  {{ data }}
+  <button @click="onClick">sadas</button>
+</template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { useFetch } from '@/composables/useFetch';
+import { useMutation } from '@/composables/useMutation';
+
+const { data, isLoading, isSuccess, isError, refetch } = useFetch('todos', {});
+const { mutate } = useMutation('/posts', {});
+
+const onClick = () => {
+  mutate({
+    method: 'POST',
+    data: {
+      title: 'foo',
+      body: 'bar',
+      userId: 1
+    }
+  });
+};
+</script>
 
 <style scoped></style>

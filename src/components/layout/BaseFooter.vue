@@ -26,11 +26,11 @@
 </template>
 
 <script setup lang="ts">
-import IconHome from '#/icons/IconHome.vue'
-import IconDj from '#/icons/IconDj.vue'
-import IconCommunityVue from '#/icons/IconCommunity.vue'
-import IconStorage from '#/icons/IconStorage.vue'
-import IconMore from '#/icons/IconMore.vue'
+import IconHome from '#/icons/IconHome.vue';
+import IconDj from '#/icons/IconDj.vue';
+import IconCommunityVue from '#/icons/IconCommunity.vue';
+import IconStorage from '#/icons/IconStorage.vue';
+import IconMore from '#/icons/IconMore.vue';
 </script>
 
 <style scoped></style>
