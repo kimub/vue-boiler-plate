@@ -1,8 +1,8 @@
-name: Build App FE Main
+name: Build App FE Dev
 
 on:
   pull_request:
-    branches: [main]
+    branches: [dev]
 
 jobs:
   build:
@@ -36,4 +36,4 @@ jobs:
 
       # react 빌드한 /build를 s3로 업로드
       - name: Upload /build to S3
-        run: aws s3 cp --recursive --region ${{ secrets.AWS_DEFAULT_REGION }} dist s3://${{ secrets.AWS_BUCKET_NAME_MAIN }}
+        run: aws s3 cp --recursive --region ${{ secrets.AWS_DEFAULT_REGION }} dist s3://${{ secrets.AWS_BUCKET_NAME_DEV }}
