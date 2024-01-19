@@ -5,7 +5,7 @@
 </template>
 
 <script setup lang="ts">
-import IconBlackLeftArrow from '#/icons/IconBlackLeftArrow.vue';
+import IconBlackLeftArrow from '@/components/icons/IconBlackLeftArrow.vue';
 </script>
 
 <style scoped></style>

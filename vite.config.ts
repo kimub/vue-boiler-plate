@@ -8,9 +8,6 @@ export default defineConfig({
   },
   plugins: [vue()],
   resolve: {
-    alias: [
-      { find: '@', replacement: '/src' },
-      { find: '#', replacement: '/src/components' }
-    ]
+    alias: [{ find: '@', replacement: '/src' }]
   }
 });
