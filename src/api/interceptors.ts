@@ -1,14 +1,16 @@
-import type { AxiosError, AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios';
+import type {
+  AxiosError,
+  AxiosInstance,
+  AxiosRequestConfig,
+  AxiosResponse,
+  InternalAxiosRequestConfig
+} from 'axios';
 
 export function setInterceptors(instance: AxiosInstance) {
   // 요청을 보내기 전에
   instance.interceptors.request.use(
-    function (config: AxiosRequestConfig) {
-      if (!config.headers) {
-        return;
-      }
-
-      config.headers.Authorization = 'token';
+    function (config) {
+      // config.headers.Authorization = 'token';
       return config;
     },
     function (error: AxiosError) {
