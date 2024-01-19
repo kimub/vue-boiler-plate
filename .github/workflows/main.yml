@@ -19,13 +19,12 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 20.9.0
-          cache: npm
 
       - name: Package Install
-        run: npm ci
+        run: yarn install
 
       - name: Proejct Build
-        run: npm run build
+        run: yarn build
 
       # GitHub Actions CLI 환경에서 S3 사용자 권한의 aws 접속
       - name: Configure AWS credentials
