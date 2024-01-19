@@ -14,7 +14,7 @@ import Spinner from '@/components/common/Spinner.vue';
 import { useFetch } from '@/composables/useFetch';
 import { useMutation } from '@/composables/useMutation';
 
-const { data, isLoading, isSuccess, isError, refetch } = useFetch('todos', {
+const { data, isLoading, isSuccess, isError, refetch } = useFetch('/todos', {
   onSuccess: (res) => {
     console.log('success!');
     console.log(res);
