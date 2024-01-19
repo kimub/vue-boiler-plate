@@ -1,8 +1,8 @@
-name: Build Vue App
+name: Build App FE Main
 
 on:
   pull_request:
-    branches: [dev]
+    branches: [main]
 
 jobs:
   build:
@@ -13,20 +13,18 @@ jobs:
 
       - name: .env setting
         run: |
-          echo "VITE_CLOUD_FRONT_ID=${{ secrets.VITE_CLOUD_FRONT_ID }}" >> .env
           echo "VITE_ACCESS_KEY=${{ secrets.VITE_ACCESS_KEY }}" >> .env
           echo "VITE_SECRET_KEY=${{ secrets.VITE_SECRET_KEY }}" >> .env
       - name: NodeJS Setup
         uses: actions/setup-node@v3
         with:
           node-version: 20.9.0
-          cache: npm
 
       - name: Package Install
-        run: npm ci
+        run: yarn install
 
       - name: Proejct Build
-        run: npm run build
+        run: yarn build
 
       # GitHub Actions CLI 환경에서 S3 사용자 권한의 aws 접속
       - name: Configure AWS credentials
@@ -38,4 +36,4 @@ jobs:
 
       # react 빌드한 /build를 s3로 업로드
       - name: Upload /build to S3
-        run: aws s3 cp --recursive --region ${{ secrets.AWS_DEFAULT_REGION }} dist s3://${{ secrets.AWS_BUCKET_NAME }}
+        run: aws s3 cp --recursive --region ${{ secrets.AWS_DEFAULT_REGION }} dist s3://${{ secrets.AWS_BUCKET_NAME_MAIN }}

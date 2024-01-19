@@ -7,6 +7,7 @@
   </div>
   <button @click="onClick">sadas</button>
   <div class="text-3xl text-slate-400 md:text-red-500">Home</div>
+  ci/cd 테스트 중
 </template>
 
 <script setup lang="ts">
