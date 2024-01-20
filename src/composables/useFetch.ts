@@ -1,27 +1,19 @@
 import { instance } from '@/api/instances';
-import { ref, watch } from 'vue';
+import { isRef, ref, watchEffect } from 'vue';
 
-export function useFetch(
-  url: string,
-  {
-    onSuccess,
-    onError
-  }: {
-    onSuccess?: (res: any) => void;
-    onError?: (err: any) => void;
-  }
-) {
-  const data = ref();
+type useFetchArgs = {
+  params?: any;
+  onSuccess?: (res: any) => void;
+  onError?: (err: any) => void;
+};
+
+export function useFetch(url: string, config: useFetchArgs = {}) {
+  const data = ref(null);
   const isLoading = ref(false);
   const isSuccess = ref(false);
   const isError = ref(false);
-  const isFlag = ref(Date.now());
 
-  const refetch = () => (isFlag.value = Date.now());
-
-  watch(isFlag, () => {
-    fetch();
-  });
+  const { params, onSuccess, onError } = config;
 
   const fetch = async () => {
     try {
@@ -29,7 +21,9 @@ export function useFetch(
       isError.value = false;
       isLoading.value = true;
 
-      const res = await instance(url);
+      const res = await instance(url, {
+        params: params && params.value
+      });
 
       data.value = res.data;
       isSuccess.value = true;
@@ -44,7 +38,11 @@ export function useFetch(
     }
   };
 
-  fetch();
+  if (isRef(params)) {
+    watchEffect(fetch);
+  } else {
+    fetch();
+  }
 
-  return { data, isLoading, isSuccess, isError, refetch };
+  return { data, isLoading, isSuccess, isError };
 }

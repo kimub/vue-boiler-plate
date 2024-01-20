@@ -1,20 +1,18 @@
 import { instance } from '@/api/instances';
 import { ref } from 'vue';
 
-export function useMutation(
-  url: string,
-  {
-    onSuccess,
-    onError
-  }: {
-    onSuccess?: (res: any) => void;
-    onError?: (err: any) => void;
-  }
-) {
+type useMutationArgs = {
+  onSuccess?: (res: any) => void;
+  onError?: (err: any) => void;
+};
+
+export function useMutation(url: string, config: useMutationArgs = {}) {
   const data = ref();
   const isLoading = ref(false);
   const isSuccess = ref(false);
   const isError = ref(false);
+
+  const { onSuccess, onError } = config;
 
   const mutate = async ({ method, data }: { method: string; data: any }) => {
     try {

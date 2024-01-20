@@ -6,36 +6,23 @@
     {{ data }}
   </div>
   <button @click="onClick">sadas</button>
+  <input type="text" v-model="params.message" />
   <div class="text-3xl text-slate-400 md:text-red-500">Home</div>
   ci/cd 테스트 중
 </template>
 
 <script setup lang="ts">
-import Spinner from '@/components/common/Spinner.vue';
+import { ref } from 'vue';
 import { useFetch } from '@/composables/useFetch';
 import { useMutation } from '@/composables/useMutation';
+import Spinner from '@/components/common/Spinner.vue';
 
-const { data, isLoading, isSuccess, isError, refetch } = useFetch('/todos', {
-  onSuccess: (res) => {
-    console.log('success!');
-    console.log(res);
-  },
-  onError: (err) => {
-    console.error('error!');
-    console.log(err);
-  }
+const params = ref({
+  message: ''
 });
 
-const { mutate } = useMutation('/posts', {
-  onSuccess: (res) => {
-    console.log('success!');
-    console.log(res);
-  },
-  onError: (err) => {
-    console.error('error!');
-    console.log(err);
-  }
-});
+const { data, isLoading, isSuccess, isError } = useFetch('/todos');
+const { mutate } = useMutation('/posts');
 
 const onClick = () => {
   mutate({
