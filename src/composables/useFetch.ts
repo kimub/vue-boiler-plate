@@ -1,5 +1,5 @@
 import { instance } from '@/api/instances';
-import { isRef, ref, watchEffect } from 'vue';
+import { isRef, ref, unref, watchEffect } from 'vue';
 
 type useFetchArgs = {
   params?: any;
@@ -22,7 +22,7 @@ export function useFetch(url: string, config: useFetchArgs = {}) {
       isLoading.value = true;
 
       const res = await instance(url, {
-        params: params && params.value
+        params: unref(params)
       });
 
       data.value = res.data;
