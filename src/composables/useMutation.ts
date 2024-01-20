@@ -7,7 +7,7 @@ type useMutationArgs = {
 };
 
 export function useMutation(url: string, config: useMutationArgs = {}) {
-  const data = ref();
+  const data = ref(null);
   const isLoading = ref(false);
   const isSuccess = ref(false);
   const isError = ref(false);
