@@ -34,6 +34,6 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ${{ secrets.AWS_DEFAULT_REGION }}
 
-      # react 빌드한 /build를 s3로 업로드
+      # Vue 빌드한 /build를 s3로 업로드
       - name: Upload /build to S3
         run: aws s3 cp --recursive --region ${{ secrets.AWS_DEFAULT_REGION }} dist s3://${{ secrets.AWS_BUCKET_NAME_MAIN }}
