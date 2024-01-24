@@ -8,8 +8,8 @@
 
 <script setup lang="ts">
 import { RouterView } from 'vue-router';
-import BaseFooter from '@/components/layout/BaseFooter.vue';
-import BaseBlackHeader from '@/components/layout/BaseBlackHeader.vue';
+import BaseFooter from '@/layouts/BaseFooter.vue';
+import BaseBlackHeader from '@/layouts/BaseBlackHeader.vue';
 </script>
 
 <style scoped></style>
