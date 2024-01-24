@@ -23,7 +23,7 @@ jobs:
       - name: Package Install
         run: yarn install
 
-      - name: Proejct Build
+      - name: Project Build
         run: yarn build
 
       # GitHub Actions CLI 환경에서 S3 사용자 권한의 aws 접속
